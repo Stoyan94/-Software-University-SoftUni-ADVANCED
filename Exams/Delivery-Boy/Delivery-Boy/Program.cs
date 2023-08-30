@@ -30,13 +30,11 @@
             int startPostionRow = delBoyRow;
             int startPostionCol = delBoyCol;
 
-            bool isDelivered = true;
-
-            string directions;            
+            bool isDelivered = true;                     
             
-            while ((directions = Console.ReadLine()!)!= null)
+            while (true)
             {
-                
+                string directions = Console.ReadLine()!;
                 int nextRow = 0;
                 int nextCol = 0;
 
@@ -82,6 +80,8 @@
                 if (!isDelivered)
                 {
                     Console.WriteLine("The delivery is late. Order is canceled.");
+                    field[startPostionRow, startPostionCol] = ' ';
+                    PrintMatrix(field);
                     break;
                 }
                 else
@@ -95,14 +95,15 @@
                     delBoyRow += nextRow;
                 }         
 
-                if (field[delBoyRow,delBoyCol] == 'R')
+                if (field[delBoyRow,delBoyCol] == 'P')
                 {
-                    field[delBoyRow, delBoyCol] = 'P';
+                    field[delBoyRow, delBoyCol] = 'R';
                     Console.WriteLine("Pizza is collected. 10 minutes for delivery.");
                 }
                 else if (field[delBoyRow,delBoyCol] == 'A')
                 {
                     field[delBoyRow, delBoyCol] = 'P';
+                    break;
                 }
                 else
                 {
@@ -124,8 +125,9 @@
             {
                 for (int col = 0; col < field.GetLongLength(1); col++)
                 {
-
+                    Console.Write(field[row,col]);
                 }
+                Console.WriteLine();
             }
         }
 
