@@ -19,7 +19,7 @@ namespace VendingSystem
             Drink herbalTea = new Drink("Herbal Tea", 1.75m, 300);
 
             //Get Count
-            Console.WriteLine(vendingMachine.GetCount);
+            Console.WriteLine(vendingMachine.GetCount());
             //0
 
             //Add Drinks
@@ -34,7 +34,7 @@ namespace VendingSystem
             vendingMachine.AddDrink(herbalTea);
 
             //Get Count
-            Console.WriteLine(vendingMachine.GetCount);
+            Console.WriteLine(vendingMachine.GetCount());
             //6
 
             //Remove Drink
