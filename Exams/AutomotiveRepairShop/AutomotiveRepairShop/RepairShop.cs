@@ -30,6 +30,7 @@ namespace AutomotiveRepairShop
         public string Report()
         {           
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Vehicles in the preparatory:");
 
             foreach (var car in this.Vehicles!)
             {
