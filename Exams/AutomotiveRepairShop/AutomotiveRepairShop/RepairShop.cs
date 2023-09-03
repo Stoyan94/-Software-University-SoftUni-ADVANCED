@@ -13,7 +13,7 @@ namespace AutomotiveRepairShop
         public int Capacity { get; set; }
         public List<Vehicle>? Vehicles { get; set; }
 
-        public int GetCount() => this.Vehicles!.Count();
+        public int GetCount() => this.Vehicles!.Count;
         public void AddVehicle(Vehicle vehicle)
         {
             if(this.Vehicles!.Count < Capacity)
