@@ -36,7 +36,7 @@ namespace AutomotiveRepairShop
             {
                 sb.AppendLine(car.ToString());
             }
-            return sb.ToString();
+            return sb.ToString().TrimEnd();
         }
     }
 }
