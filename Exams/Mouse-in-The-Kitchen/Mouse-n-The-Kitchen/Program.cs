@@ -42,7 +42,7 @@
                 switch (command)
                 {
                     case "up": nextRow = -1;break;
-                    case "dow": nextRow= 1; break;
+                    case "down": nextRow= 1; break;
                     case "left": nextCol = -1; break;
                     case "right": nextCol = 1; break;
                 }
@@ -56,22 +56,23 @@
                 {
                     continue;
                 }
+                field[mouseRow, mouseCol] = '*';
+
                 mouseRow += nextRow;
                 mouseCol += nextCol;             
                
-
                 if (field[mouseRow,mouseCol] == 'C')
-                {
-                    field[mouseRow, mouseCol] = 'M';
+                {                    
                     cheeseCount--;
-                    if (cheeseCount ==0)
+
+                    if (cheeseCount == 0)
                     {
                         Console.WriteLine("Happy mouse! All the cheese is eaten, good night!");
+                        field[mouseRow, mouseCol] = 'M';
                         break;
                     }
                 }
-                field[mouseRow, mouseCol] = '*';
-                
+                field[mouseRow, mouseCol] = 'M';
             }
 
             PrintMatrix(field);
