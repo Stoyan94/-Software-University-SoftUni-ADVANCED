@@ -45,6 +45,9 @@
                     case "down": nextRow= 1; break;
                     case "left": nextCol = -1; break;
                     case "right": nextCol = 1; break;
+                    case "danger": Console.WriteLine("Mouse will come back later!");
+                        PrintMatrix(field);
+                        return;
                 }
 
                 if (!isInRenage(field,mouseRow+nextRow,mouseCol+nextCol))
@@ -71,6 +74,12 @@
                         field[mouseRow, mouseCol] = 'M';
                         break;
                     }
+                }
+                else if (field[mouseRow,mouseCol] == 'T')
+                {
+                    Console.WriteLine("Mouse is trapped!");
+                    field[mouseRow, mouseCol] = 'M';
+                    break;
                 }
                 field[mouseRow, mouseCol] = 'M';
             }
