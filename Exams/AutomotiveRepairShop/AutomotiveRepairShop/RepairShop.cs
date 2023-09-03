@@ -1,4 +1,6 @@
-﻿namespace AutomotiveRepairShop
+﻿using System.Text;
+
+namespace AutomotiveRepairShop
 {
     public class RepairShop
     {
@@ -14,15 +16,26 @@
         public int GetCount() => this.Vehicles!.Count();
         public void AddVehicle(Vehicle vehicle)
         {
-            if(this.Vehicles!.Count > Capacity)
+            if(this.Vehicles!.Count < Capacity)
             {
                 this.Vehicles.Add(vehicle);
             }
         }
 
         public bool RemoveVehicle(string vin) => this.Vehicles!
-            .Remove(this.Vehicles.First(x => x.VIN == vin));
+            .Remove(this.Vehicles.FirstOrDefault(x => x.VIN == vin)!);
 
-        public Vehicle GetLowestMileage()=>this.Vehicles!.OrderBy(x=>x.Milage).First();
+        public Vehicle GetLowestMileage()=>this.Vehicles!.OrderBy(x=>x.Milage).FirstOrDefault()!;
+
+        public string Report()
+        {           
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var car in this.Vehicles!)
+            {
+                sb.AppendLine(car.ToString());
+            }
+            return sb.ToString();
+        }
     }
 }
