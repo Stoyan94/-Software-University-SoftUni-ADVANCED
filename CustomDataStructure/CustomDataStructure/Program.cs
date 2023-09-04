@@ -22,6 +22,12 @@
             csList.Clear();
 
             Console.WriteLine(csList.Count);
+
+            for (int i = 0; i < 10; i++)
+            {
+                csList.Add(i);
+            }
+            
         }
     }
 }
