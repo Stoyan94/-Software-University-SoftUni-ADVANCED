@@ -53,6 +53,14 @@ namespace CustomStack
         {
             this.data = new int[this.capacity];
         }
+
+        public void ForEach(Action<int> action)
+        {
+            for (int i = this.Count - 1; i >=0 ; i--)
+            {
+                action(this.data[i]);
+            }
+        }
         private void Resize()
         {
             var newCapacity = this.data.Length * 2;

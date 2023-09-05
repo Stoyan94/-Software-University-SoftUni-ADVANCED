@@ -34,13 +34,14 @@
 
             Console.WriteLine();
 
+            myStack.ForEach(x => Console.WriteLine(x * 10));
+
             myStack.Pop();
             myStack.Pop();
             myStack.Pop();
             myStack.Pop();
             myStack.Pop();
            
-
         }
     }
 }
