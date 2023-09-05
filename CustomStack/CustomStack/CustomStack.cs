@@ -8,16 +8,28 @@ namespace CustomStack
 {
     public class CustomStack
     {
+        private int capacity;
         private int[] data;
 
         public CustomStack()
-        {
-            this.data = new int[4];
+            :this(4)
+        {          
         }
-        public int Count { get;}
-        public void Push()
-        {
 
+        public CustomStack(int caplacity)
+        {
+            this.capacity = caplacity;
+            this.data = new int[caplacity];
+        }
+        public int Count { get; private set;}
+        public void Push(int num)
+        {
+            if (this.Count == this.data.Length)
+            {
+                Resize();
+            }
+            this.data[this.Count] = num;
+            Count++;
         }
         public int Pop()
         {
@@ -29,6 +41,10 @@ namespace CustomStack
             return 0;
         }
 
+        public void Clear()
+        {
+            this.data = new int[this.capacity];
+        }
         private void Resize()
         {
             var newCapacity = this.data.Length * 2;
