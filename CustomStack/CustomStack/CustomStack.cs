@@ -33,12 +33,20 @@ namespace CustomStack
         }
         public int Pop()
         {
-            return 0;
+            this.isStackEmpty();
+
+            var result = this.data[this.Count-1];
+
+            this.Count--;
+
+            return result;
         }
 
         public int Peek()
         {
-            return 0;
+            this.isStackEmpty();
+
+            return this.data[this.Count - 1];
         }
 
         public void Clear()
@@ -56,6 +64,14 @@ namespace CustomStack
                 newData[i] = this.data[i];
             }
             this.data = newData;
+        }
+
+        private void isStackEmpty()
+        {
+            if (this.Count == 0)
+            {
+                throw new Exception("Stack is empty.");
+            }
         }
     }
 }

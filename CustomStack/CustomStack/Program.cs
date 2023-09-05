@@ -7,6 +7,7 @@
             var myStack = new CustomStack();
 
             myStack.Push(10);
+            myStack.Push(20);
 
             var result = myStack.Pop();
 
@@ -22,10 +23,24 @@
 
             Console.WriteLine(myStack.Count);
 
-            for (int i = 0; i < 10; i++)
+            Console.WriteLine();
+
+            for (int i = 1; i < 4; i++)
             {
                 myStack.Push(i);
             }
+
+            myStack.Peek();          
+
+            Console.WriteLine();
+
+            myStack.Pop();
+            myStack.Pop();
+            myStack.Pop();
+            myStack.Pop();
+            myStack.Pop();
+           
+
         }
     }
 }
