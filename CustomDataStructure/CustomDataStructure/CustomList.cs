@@ -26,10 +26,7 @@ namespace CustomDataStructure
         public int Count { get; private set; }
         public void Add(int num)
         {
-            if (this.Count == this.data.Length)
-            {
-                Resize();
-            }
+            this.ChekIfResizeIsNeeded();  
             this.data[this.Count] = num;
             this.Count++;
         }
@@ -49,6 +46,19 @@ namespace CustomDataStructure
             return result;
         }
 
+        public void Insert(int index, int element) 
+        {
+            this.ValidateIndex(index);
+            this.ChekIfResizeIsNeeded();
+
+            for (int i = this.Count-1; i >= index; i--)
+            {
+                this.data[i + 1] = this.data[i];
+            }
+
+            this.data[index] = element;
+            this.Count++;
+        }
         public bool Contains(int element)
         {
             for (int i = 0; i < this.Count; i++)
@@ -99,6 +109,13 @@ namespace CustomDataStructure
             this.data = new int[capacity];
         }
 
+        private void ChekIfResizeIsNeeded()
+        {
+            if (this.Count == this.data.Length)
+            {
+                Resize();
+            }
+        }
         private void Resize()
         {
             var newCapacity = this.data.Length * 2;

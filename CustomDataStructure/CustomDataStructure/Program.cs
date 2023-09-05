@@ -51,7 +51,10 @@
             {
                 Console.WriteLine(newList[i]);
             }
-            
+
+            newList.Insert(1, 10);
+            Console.WriteLine();
+
         }
     }
 }
