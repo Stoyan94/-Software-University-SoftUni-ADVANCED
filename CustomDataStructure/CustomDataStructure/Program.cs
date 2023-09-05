@@ -27,6 +27,30 @@
             {
                 csList.Add(i);
             }
+            Console.WriteLine();
+
+            var newList = new CustomList();
+
+            newList.Add(10);
+            newList.Add(20);
+            newList.Add(30);
+
+            var removed = newList.RemoveAt(2);          
+            
+            for (int i = 0;i < newList.Count; i++)
+            {
+                Console.WriteLine(newList[i]);
+            }
+
+            Console.WriteLine(newList.Count);
+            Console.WriteLine(newList.Contains(10));
+
+            newList.Swap(0, 1);
+
+            for (int i = 0; i < newList.Count; i++)
+            {
+                Console.WriteLine(newList[i]);
+            }
             
         }
     }

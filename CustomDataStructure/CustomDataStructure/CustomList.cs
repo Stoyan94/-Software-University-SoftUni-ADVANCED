@@ -26,7 +26,7 @@ namespace CustomDataStructure
         public int Count { get; private set; }
         public void Add(int num)
         {
-            if (this.Count == capacity)
+            if (this.Count == this.data.Length)
             {
                 Resize();
             }
@@ -34,6 +34,42 @@ namespace CustomDataStructure
             this.Count++;
         }
         
+        public int RemoveAt(int index)
+        {
+            this.ValidateIndex(index);
+
+            var result = this.data[index];
+
+            for (int i = index + 1; i < this.Count; i++)
+            {
+                this.data[i - 1] = this.data[i];
+            }
+            this.Count--;
+
+            return result;
+        }
+
+        public bool Contains(int element)
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (this.data[i] == element)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void Swap(int firstInedx, int seckondIndex)
+        {
+            ValidateIndex(firstInedx);
+            ValidateIndex(seckondIndex);
+
+            var firstValue = this.data[firstInedx];
+            this.data[firstInedx] = this.data[seckondIndex];
+            this.data[seckondIndex] = firstValue;
+        }
         public bool this[string text]
         {
             get
@@ -73,6 +109,7 @@ namespace CustomDataStructure
             {
                 newData[i] = this.data[i];
             }
+            this.data = newData;
         }
 
         private void ValidateIndex(int index)
