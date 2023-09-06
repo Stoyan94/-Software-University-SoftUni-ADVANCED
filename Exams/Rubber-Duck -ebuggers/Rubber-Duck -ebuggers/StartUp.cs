@@ -1,4 +1,4 @@
-﻿namespace Rubber_Duck__ebuggers
+﻿namespace Rubber_Duck_Debuggers
 {
     internal class StartUp
     {
