@@ -6,6 +6,10 @@
         {
             DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
 
+            for (int i = 0; i < 3; i++)
+            {
+                doublyLinkedList.AddFirst(i);
+            }
         }
     }
 }

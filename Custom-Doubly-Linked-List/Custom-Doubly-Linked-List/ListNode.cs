@@ -13,5 +13,10 @@ namespace Custom_Doubly_Linked_List
 
         public ListNode PrevionsNode { get; set; }
 
+        public override string ToString() //only for debug
+        {
+            return this.Value.ToString();
+        }
+
     }
 }
