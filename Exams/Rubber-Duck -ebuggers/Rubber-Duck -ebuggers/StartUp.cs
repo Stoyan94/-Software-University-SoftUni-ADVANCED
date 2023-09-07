@@ -35,9 +35,14 @@
                     tasks.Push(tasks.Pop() - 2);
                     timeGiven.Enqueue(timeGiven.Dequeue());
                 }
-            }
+           }
 
-            
+            Console.WriteLine("Congratulations, all tasks have been completed! Rubber ducks rewarded:");
+
+            foreach (var duck in ducks)
+            {
+                Console.WriteLine($"{duck.Key}: {duck.Value}");
+            }
         }
 
         private static void DucksCreated(int calcTime, Dictionary<string, int> ducks)
