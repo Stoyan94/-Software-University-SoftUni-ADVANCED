@@ -20,6 +20,7 @@
 
             int nutsCountCollected = 0;
 
+            bool isNotColledted = true;
 
             foreach (var command in squCommands)
             {
@@ -38,7 +39,9 @@
 
                 if (!isInRenage(field,squRow+nextRow,squCol+nextCol))
                 {
-                    OutFieldMeessage();
+                    isNotColledted = false;
+
+                    OutFieldMeessage(nutsCountCollected);
                     break;
                 }
 
@@ -47,7 +50,9 @@
 
                 if (field[squRow, squCol] == 't')
                 {
-                    TrapMessage();
+                    isNotColledted = false;
+
+                    TrapMessage(nutsCountCollected);
                     break;
                 }
                 else
@@ -62,6 +67,8 @@
                         if (nutsCountCollected == 3)
                         {
                             field[squRow, squCol] = 's';
+                            isNotColledted = false;
+
                             AllCollectedMessage();
                             break;
                         }
@@ -69,7 +76,7 @@
                 }
             }
 
-            if (allNutsCount > 0)
+            if (isNotColledted)
             {
                 Console.WriteLine("There are more hazelnuts to collect.");
             }
@@ -77,17 +84,20 @@
 
         public static void AllCollectedMessage()
         {
-            Console.WriteLine("Good job! You have collected allhazelnuts!");
+            Console.WriteLine("Good job! You have collected hallhazelnuts!");
+            Console.WriteLine($"Hazelnuts collected: 3");
         }
 
-        public static void TrapMessage()
+        public static void TrapMessage(int nutsCountCollected)
         {
             Console.WriteLine("Unfortunately, the squirrel stepped on a trap...");
+            Console.WriteLine($"Hazelnuts collected: {nutsCountCollected}");
         }
 
-        public static void OutFieldMeessage()
+        public static void OutFieldMeessage(int nutsCountCollected)
         {
             Console.WriteLine("The squirrel is out of the field.");
+            Console.WriteLine($"Hazelnuts collected: {nutsCountCollected}");
         }
 
         public static bool isInRenage(char[,] field, int row, int col)
