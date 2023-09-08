@@ -15,8 +15,7 @@
             int allNutsCount = 0;
 
             CreateFieldAndInfo(field, ref squRow, ref squCol, ref allNutsCount);
-
-           
+            
 
             int nutsCountCollected = 0;
 
