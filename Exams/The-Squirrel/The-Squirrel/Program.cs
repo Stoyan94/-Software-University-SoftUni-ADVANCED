@@ -65,11 +65,9 @@
                         field[squRow, squCol] = '*';
 
                         if (nutsCountCollected == 3)
-                        {
-                            field[squRow, squCol] = 's';
+                        {                            
                             isNotColledted = false;
-
-                            AllCollectedMessage();
+                            AllCollectedMessage(nutsCountCollected);
                             break;
                         }
                     }
@@ -79,13 +77,14 @@
             if (isNotColledted)
             {
                 Console.WriteLine("There are more hazelnuts to collect.");
+                Console.WriteLine($"Hazelnuts collected: {nutsCountCollected}");
             }
         }
 
-        public static void AllCollectedMessage()
+        public static void AllCollectedMessage(int nutsCountCollected)
         {
-            Console.WriteLine("Good job! You have collected hallhazelnuts!");
-            Console.WriteLine($"Hazelnuts collected: 3");
+            Console.WriteLine("Good job! You have collected all hazelnuts!");
+            Console.WriteLine($"Hazelnuts collected: {nutsCountCollected}");
         }
 
         public static void TrapMessage(int nutsCountCollected)
