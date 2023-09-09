@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClothesMagazine
 {
@@ -28,6 +30,26 @@ namespace ClothesMagazine
                                               //Get Cloth
             Cloth getCloth = magazine.GetCloth("brown"); //Product: t-shirt with size 34, color brown
             Console.WriteLine(getCloth);
+
+            Dictionary<string, Dictionary<int, string>> buyCloths = new Dictionary<string, 
+                Dictionary<int, string>>();
+
+            string customerBag;
+            
+            while ((customerBag = Console.ReadLine()) != "end")
+            {
+                string[] customer = customerBag.Split(", ");
+
+                string clothColor = customer[0];
+                int clothSize = int.Parse(customer[1]);
+                string clothType = customer[2];
+                              
+                buyCloths.Add(clothColor, new Dictionary<int, string>());
+                buyCloths[clothColor].Add(clothSize, clothType);
+            }
+
+            magazine.BuyCloths(buyCloths);
+            
             Console.WriteLine(magazine.Report());
             //Zara magazine contains:
             //Product: jeans with size 32, color blue

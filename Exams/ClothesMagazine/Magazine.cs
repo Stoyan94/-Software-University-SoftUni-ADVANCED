@@ -43,7 +43,7 @@ namespace ClothesMagazine
 
         public Cloth GetCloth(string color)=>this.Clothes.FirstOrDefault(x=>x.Color==color);
 
-        public  string Report()
+        public string Report()
         {
             StringBuilder output = new StringBuilder();
 
@@ -55,6 +55,14 @@ namespace ClothesMagazine
             }
 
             return output.ToString().TrimEnd();
+        }
+
+        public void BuyCloths(Dictionary<string, Dictionary<int, string>> buyCloths)
+        {
+            foreach (var item in buyCloths)
+            {
+
+            }
         }
     }
 }
