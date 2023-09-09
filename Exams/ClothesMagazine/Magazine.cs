@@ -80,7 +80,7 @@ namespace ClothesMagazine
 
         public void BuyCloths(Cloth buyCloth)
         {
-           Cloth cloth = this.Clothes.Where(this.Clothes.Contains).FirstOrDefault();
+            Cloth cloth = this.Clothes.FirstOrDefault(x => x.Color == buyCloth.Color);
 
             if (cloth != null)
             {

@@ -43,7 +43,8 @@ namespace ClothesMagazine
                 string clothType = customer[2];                              
                
                 Cloth buyCloth = new Cloth(clothColor, clothSize, clothType);
-                 magazine.BuyCloths(buyCloth);
+
+                magazine.BuyCloths(buyCloth);
 
                 customerBag = Console.ReadLine();
             }

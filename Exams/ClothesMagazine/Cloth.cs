@@ -1,4 +1,7 @@
-﻿namespace ClothesMagazine
+﻿using System;
+using System.Collections.Generic;
+
+namespace ClothesMagazine
 {
     public class Cloth
     {
@@ -19,5 +22,9 @@
         {
             return $"Product: {Type} with size {Size}, color {Color}";
         }
+
+       
+
+       
     }
 }
