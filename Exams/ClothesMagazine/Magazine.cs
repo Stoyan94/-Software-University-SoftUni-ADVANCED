@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -45,6 +46,11 @@ namespace ClothesMagazine
 
         public string Report()
         {
+            if (Clothes.Count == 0)
+            {
+                return ($"Out of clothes");           
+            }
+
             StringBuilder output = new StringBuilder();
 
             output.AppendLine("Zara magazine contains:");
@@ -57,11 +63,22 @@ namespace ClothesMagazine
             return output.ToString().TrimEnd();
         }
 
-        public void BuyCloths(Dictionary<string, Dictionary<int, string>> buyCloths)
+        public void ClothesSold(Cloth selledCloths)
         {
-            foreach (var item in buyCloths)
-            {
 
+        }
+
+        public void BuyCloths(Cloth buyCloth)
+        {
+           Cloth cloth = this.Clothes.Where(this.Clothes.Contains).FirstOrDefault();
+
+            if (cloth != null)
+            {
+                this.Clothes.Remove(cloth);
+            }
+            else
+            {
+                Console.WriteLine("Sorry this garment is not available!");
             }
         }
     }
