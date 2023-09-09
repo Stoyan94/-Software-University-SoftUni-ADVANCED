@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ClothesMagazine
 {
@@ -29,10 +30,22 @@ namespace ClothesMagazine
         public bool RemoveCloth(string color)=> this.Clothes.Remove
             (this.Clothes.FirstOrDefault(x=>x.Color==color));
 
-        public Cloth GetSmallestCloth()=>this.Clothes.OrderBy(x=>x.Size).FirstOrDefault();
+        public Cloth GetSmallestCloth()=>this.Clothes.OrderByDescending(x=>x.Size).FirstOrDefault();
 
         public Cloth GetCloth(string color)=>this.Clothes.FirstOrDefault(x=>x.Color==color);
 
+        public  string Report()
+        {
+            StringBuilder output = new StringBuilder();
 
+            output.AppendLine("Zara magazine contains:");
+
+            foreach (var cloth in Clothes.OrderBy(x=>x.Size))
+            {
+                output.AppendLine(cloth.ToString());
+            }
+
+            return output.ToString().TrimEnd();
+        }
     }
 }
