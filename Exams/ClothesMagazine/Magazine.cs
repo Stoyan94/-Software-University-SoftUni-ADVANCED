@@ -27,8 +27,17 @@ namespace ClothesMagazine
             }
         }
 
-        public bool RemoveCloth(string color)=> this.Clothes.Remove
-            (this.Clothes.FirstOrDefault(x=>x.Color==color));
+        public int GetClothCount() => this.Clothes.Count;
+        public bool RemoveCloth(string color)
+        {
+            Cloth cloth = this.Clothes.FirstOrDefault(c => c.Color == color);
+            if (cloth != null)
+            {
+                this.Clothes.Remove(cloth);
+                return true;
+            }
+            else return false;
+        }
 
         public Cloth GetSmallestCloth()=>this.Clothes.OrderByDescending(x=>x.Size).FirstOrDefault();
 
