@@ -4,27 +4,29 @@ using System.Linq;
 using System.Text;
 
 namespace ClothesMagazine
-{
-    public class Magazine
+{public class Magazine
     {
+        private List<Cloth> clothesSold;
         public Magazine(string type, int capacity)
         {
             this.Type = type;
             this.Capacity = capacity;
             this.Clothes = new List<Cloth>();
+            this.clothesSold = new List<Cloth>();
         }
 
         public string Type { get; set; }
 
         public int Capacity { get; set; }
 
-        public List<Cloth> Clothes { get; set; }
+        public List<Cloth> Clothes { get; set; }        
 
         public void AddCloth(Cloth cloth)
         {
             if (Clothes.Count < Capacity)
             {
                 Clothes.Add(cloth);
+                Capacity++;
             }
         }
 
@@ -45,28 +47,36 @@ namespace ClothesMagazine
         public Cloth GetCloth(string color)=>this.Clothes.FirstOrDefault(x=>x.Color==color);
 
         public string Report()
-        {
-            if (Clothes.Count == 0)
-            {
-                return ($"Out of clothes");           
-            }
+        {      
 
             StringBuilder output = new StringBuilder();
 
-            output.AppendLine("Zara magazine contains:");
-
-            foreach (var cloth in Clothes.OrderBy(x=>x.Size))
+            if (Clothes.Count == 0)
             {
-                output.AppendLine(cloth.ToString());
+                output.AppendLine($"Out of clothes");
+            }
+            else
+            {
+                output.AppendLine("Zara magazine contains:");
+
+                foreach (var cloth in Clothes.OrderBy(x => x.Size))
+                {
+                    output.AppendLine(cloth.ToString());
+                }                
+            }
+
+            if (clothesSold.Count > 0)
+            {
+                output.AppendLine("Clothes sold:");
+
+                foreach (var clothSold in clothesSold)
+                {
+                    output.AppendLine(clothSold.ToString());
+                }
             }
 
             return output.ToString().TrimEnd();
-        }
-
-        public void ClothesSold(Cloth selledCloths)
-        {
-
-        }
+        }       
 
         public void BuyCloths(Cloth buyCloth)
         {
@@ -75,6 +85,7 @@ namespace ClothesMagazine
             if (cloth != null)
             {
                 this.Clothes.Remove(cloth);
+                this.clothesSold.Add(cloth);
             }
             else
             {
