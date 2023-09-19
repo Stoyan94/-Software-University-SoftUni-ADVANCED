@@ -17,7 +17,7 @@ Dictionary<string, int> tableDif = new Dictionary<string, int>()
     ["Kamenitza"] = 70,
 };
 
-while (foodPortions.Any() || stamina.Any())
+while (foodPortions.Any() && stamina.Any() && tableDif.Any())
 {
     int energy = foodPortions.Pop() + stamina.Dequeue();
 
