@@ -5,11 +5,13 @@ int fieldSize = int.Parse(Console.ReadLine());
 
 int submarineRow = 0;
 int submarineCol = 0;
+
+char[,] field = FieldInfo(fieldSize,ref submarineCol,ref submarineRow);
+
 int submDef = 3;
+int desShips = 3;
 
-
-
-char[,] filed = FieldInfo(fieldSize,ref submarineCol,ref submarineRow);
+bool isShipsDes = true;
 
 while (true)
 {
@@ -33,6 +35,30 @@ while (true)
             nextCol = 1;
             break;
     }
+
+    submarineRow += nextRow;
+    submarineCol += nextCol;
+   
+    if (field[submarineRow, submarineCol] == '*')
+    {
+        submDef--;
+
+        if (submDef == 0)
+        {
+            field[submarineRow, submarineCol] = 'S';
+            break;
+        }
+    }
+    else if (field[submarineRow, submarineCol] == 'C')
+    {
+        desShips--;
+
+        if (desShips == 0)
+        {
+            field[submarineRow, submarineCol] = 'S';
+            break;
+        }
+    }
 }
 
 
@@ -48,7 +74,7 @@ char[,] FieldInfo(int fieldSize, ref int submarineCol, ref int submarineRow)
         {
             matrix[row, col] = input[col];
 
-            if (matrix[row,col] == 'S')
+            if (matrix[row, col] == 'S')
             {
                 submarineRow = row;
                 submarineCol = col;
