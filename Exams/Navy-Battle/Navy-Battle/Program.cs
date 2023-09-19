@@ -13,6 +13,7 @@ int desShips = 3;
 
 bool isShipsDes = true;
 
+
 while (true)
 {
     string cmdDirections = Console.ReadLine();
@@ -35,17 +36,19 @@ while (true)
             nextCol = 1;
             break;
     }
+    field[submarineRow, submarineCol] = '-';
 
     submarineRow += nextRow;
     submarineCol += nextCol;
    
     if (field[submarineRow, submarineCol] == '*')
     {
-        submDef--;
+        submDef--;        
 
         if (submDef == 0)
         {
             field[submarineRow, submarineCol] = 'S';
+            isShipsDes = false;
             break;
         }
     }
@@ -55,12 +58,35 @@ while (true)
 
         if (desShips == 0)
         {
-            field[submarineRow, submarineCol] = 'S';
+            field[submarineRow, submarineCol] = 'S';            
             break;
         }
-    }
+    }  
+
 }
 
+if (isShipsDes)
+{
+    Console.WriteLine("Mission accomplished, U-9 has destroyed all battle cruisers of the enemy!");
+    PrintMatrix(field);
+}
+else
+{
+    Console.WriteLine($"Mission failed, U-9 disappeared! Last known coordinates [{submarineRow}, {submarineCol}]!");
+    PrintMatrix(field);
+}
+
+void PrintMatrix(char[,] field)
+{
+    for (int row = 0; row < field.GetLongLength(0); row++)
+    {
+        for (int col = 0; col < field.GetLongLength(1); col++)
+        {
+            Console.Write(field[row,col]);
+        }
+        Console.WriteLine();
+    }
+}
 
 char[,] FieldInfo(int fieldSize, ref int submarineCol, ref int submarineRow)
 {  
@@ -80,7 +106,6 @@ char[,] FieldInfo(int fieldSize, ref int submarineCol, ref int submarineRow)
                 submarineCol = col;
             }
         }
-
     }
 
     return matrix;
