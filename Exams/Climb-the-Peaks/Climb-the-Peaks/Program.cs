@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-Queue<int> foodPortions = new Queue<int>(Console.ReadLine().Split(", ").Select(int.Parse));
+List<string> conquerPeaks = new List<string>();
 
-Stack<int> stamina = new Stack<int>(Console.ReadLine().Split(", ").Select(int.Parse)); 
+Stack<int> foodPortions = new Stack<int>(Console.ReadLine().Split(", ").Select(int.Parse)); 
+
+Queue<int> stamina = new Queue<int>(Console.ReadLine().Split(", ").Select(int.Parse));
 
 Dictionary<string,int> tableDif = new Dictionary<string, int>()
 {
@@ -17,8 +19,34 @@ Dictionary<string,int> tableDif = new Dictionary<string, int>()
 
 while (foodPortions.Any() || stamina.Any())
 {
+    int energy = foodPortions.Pop() + stamina.Dequeue();   
+    
 
+    foreach (var peak in tableDif)
+    {
+        int result = 0;
+
+        if (peak.Value - energy >= 0)
+        {
+            result = peak.Value - energy;
+            tableDif[peak.Key] = result;
+        }
+        else
+        {
+            tableDif[peak.Key] = 0;
+        }
+
+        if (tableDif[peak.Key] == 0) 
+        {
+            conquerPeaks.Add(peak.Key);
+            tableDif.Remove(peak.Key);
+        }
+
+        break;
+    }  
 }
+
+Console.WriteLine(string.Join("\n",conquerPeaks));
 
 
  
