@@ -8,19 +8,19 @@ namespace ShoeStore
 {
     public class ShoeStore
     {
-        private List<Shoe> shoe;
+        private List<Shoe> shoes;
         public ShoeStore(string name, int storageCapacity)
         {
             Name = name;
             StorageCapacity = storageCapacity;
-            this.shoe = new List<Shoe>();
+            this.shoes = new List<Shoe>();
         }
 
         public string Name { get; set; }
 
         public int StorageCapacity { get; set; }
 
-        public List<Shoe> Shoes { get; set; }
+        IReadOnlyCollection<Shoe> Shoes => shoes;
 
         public int Cont => Shoes.Count();
 
@@ -32,13 +32,13 @@ namespace ShoeStore
             }
             else
             {
-                Shoes.Add(shoe);
+                this.shoes.Add(shoe);
                 return $"Successfully added {shoe.Type} {shoe.Material} pair of shoes to the store.";
             }
         }
 
         public List<Shoe> GetShoesByType(string shoeType)
-            =>Shoes.FindAll(s => s.Type.ToLower() == shoeType.ToLower());        
+            =>this.shoes.FindAll(s => s.Type.ToLower() == shoeType.ToLower());        
 
         public int RemoveShoes(string material)=> Shoes.Where(x=>x.Material == material).Count();
 
@@ -46,7 +46,7 @@ namespace ShoeStore
 
         public string StockList(int size, string type)
         {           
-            List<Shoe> shoes = Shoes.FindAll(s=>s.Size == size && s.Type == type);
+            List<Shoe> shoes = this.shoes.FindAll(s=>s.Size == size && s.Type == type);
 
             StringBuilder output = new StringBuilder();
 
