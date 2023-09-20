@@ -18,5 +18,9 @@
 
         public string Material { get; set; }
 
+        public override string ToString()
+        {
+            return $"Size {Size}, {Material} {Brand} {Type} shoe.";
+        }
     }
 }
