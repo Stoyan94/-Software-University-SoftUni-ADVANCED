@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ShoeStore
@@ -25,7 +26,7 @@ namespace ShoeStore
             if (Shoes.Count < StorageCapacity)
             {
                 Shoes.Add(shoe);
-               return $"Successfully added {shoe.Type} {shoe.Material} pair of shoes to the store.";                
+                return $"Successfully added {shoe.Type} {shoe.Material} pair of shoes to the store.";
             }
             else
             {
@@ -33,5 +34,15 @@ namespace ShoeStore
             }
         }
 
+        public List<Shoe> GetShoesByType(string shoeType)
+        {
+            List<Shoe> shoe = Shoes.FindAll(s => s.Type.ToLower() == shoeType);
+
+
+            return shoe;
+        }
+
+        public int RemoveShoes(string material)=> Shoes.Where(x=>x.Material == material).Count();
+        }
     }
 }

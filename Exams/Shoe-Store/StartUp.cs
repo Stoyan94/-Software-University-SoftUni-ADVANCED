@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ShoeStore
 {
@@ -46,27 +47,27 @@ namespace ShoeStore
 
             Console.WriteLine(store.Cont);
 
-            //var runningShoes = store.GetShoesByType("Running");
-            //var hikingShoes = store.GetShoesByType("hIKING");
+            List<Shoe> runningShoes = store.GetShoesByType("Running");
+            List<Shoe> hikingShoes = store.GetShoesByType("hIKING");
 
-            //Console.WriteLine(string.Join($"{Environment.NewLine}", runningShoes));
+            Console.WriteLine(string.Join($"{Environment.NewLine}", runningShoes));
             //Size 42.5, textile Nike running shoe.
             // Size 38, textile Reebok running shoe.
             // Size 42, leather AirJordan running shoe.
 
-            //Console.WriteLine(string.Join($"{Environment.NewLine}", hikingShoes));
+            Console.WriteLine(string.Join($"{Environment.NewLine}", hikingShoes));
             //Size 42, textile Salomon hiking shoe.
             // Size 42.5, textile Nike hiking shoe.
             // Size 42, textile Puma hiking shoe.
 
-            //Console.WriteLine(store.RemoveShoes("leather"));
+            Console.WriteLine(store.RemoveShoes("leather"));
             //4
 
-            //var shoeBySize = store.GetShoeBySize(42.5);
-            //Console.WriteLine(shoeBySize);
+            var shoeBySize = store.GetShoeBySize(42.5);
+            Console.WriteLine(shoeBySize);
             //Size 42.5, textile Nike running shoe.
 
-            //Console.WriteLine(store.StockList(42, "hiking"));
+            Console.WriteLine(store.StockList(42, "hiking"));
             //Stock list for size 42 - hiking shoes:
             //Size 42, textile Salomon hiking shoe.
             //Size 42, textile Puma hiking shoe.
