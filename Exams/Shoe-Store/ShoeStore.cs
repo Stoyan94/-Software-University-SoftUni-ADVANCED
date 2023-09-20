@@ -8,11 +8,12 @@ namespace ShoeStore
 {
     public class ShoeStore
     {
+        private List<Shoe> shoe;
         public ShoeStore(string name, int storageCapacity)
         {
             Name = name;
             StorageCapacity = storageCapacity;
-            Shoes = new List<Shoe>();
+            this.shoe = new List<Shoe>();
         }
 
         public string Name { get; set; }
