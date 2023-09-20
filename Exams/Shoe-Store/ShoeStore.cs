@@ -25,14 +25,14 @@ namespace ShoeStore
 
         public string AddShoe(Shoe shoe)
         {
-            if (Shoes.Count < StorageCapacity)
+            if (Shoes.Count == StorageCapacity)
             {
-                Shoes.Add(shoe);
-                return $"Successfully added {shoe.Type} {shoe.Material} pair of shoes to the store.";
+                return "No more space in the storage room.";
             }
             else
             {
-                return "No more space in the storage room.";
+                Shoes.Add(shoe);
+                return $"Successfully added {shoe.Type} {shoe.Material} pair of shoes to the store.";
             }
         }
 
@@ -43,27 +43,29 @@ namespace ShoeStore
 
         public Shoe GetShoeBySize(double size) => Shoes.FirstOrDefault(s => s.Size == size);
 
-        public StringBuilder StockList(int size, string type)
+        public string StockList(int size, string type)
         {           
+            List<Shoe> shoes = Shoes.FindAll(s=>s.Size == size && s.Type == type);
+
             StringBuilder output = new StringBuilder();
+
+            if (shoes is null)
+            {
+                output.Append("No matches found!");
+                return output.ToString();
+            }
 
             output.AppendLine($"Stock list for size {size} - {type} shoes:");
 
-            foreach (var shoe in Shoes)
+            foreach (var shoe in shoes)
             {
                 if (shoe.Size == size && shoe.Type.ToLower() == type.ToLower())
                 {
                     output.AppendLine(shoe.ToString());
                 }
-            }
+            }         
 
-            if (output is null)
-            {
-                output.Append("No matches found!");
-                return output ;
-            }
-
-            return output;
+            return output.ToString();
         }
     }
 
