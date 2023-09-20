@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ShoeStore
 {
@@ -35,14 +37,35 @@ namespace ShoeStore
         }
 
         public List<Shoe> GetShoesByType(string shoeType)
-        {
-            List<Shoe> shoe = Shoes.FindAll(s => s.Type.ToLower() == shoeType);
-
-
-            return shoe;
-        }
+            =>Shoes.FindAll(s => s.Type.ToLower() == shoeType.ToLower());        
 
         public int RemoveShoes(string material)=> Shoes.Where(x=>x.Material == material).Count();
+
+        public Shoe GetShoeBySize(double size) => Shoes.FirstOrDefault(s => s.Size == size);
+
+        public StringBuilder StockList(int size, string type)
+        {           
+            StringBuilder output = new StringBuilder();
+
+            output.AppendLine($"Stock list for size {size} - {type} shoes:");
+
+            foreach (var shoe in Shoes)
+            {
+                if (shoe.Size == size && shoe.Type.ToLower() == type.ToLower())
+                {
+                    output.AppendLine(shoe.ToString());
+                }
+            }
+
+            if (output is null)
+            {
+                output.Append("No matches found!");
+                return output ;
+            }
+
+            return output;
         }
     }
+
+    
 }

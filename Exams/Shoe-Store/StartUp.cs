@@ -63,7 +63,7 @@ namespace ShoeStore
             Console.WriteLine(store.RemoveShoes("leather"));
             //4
 
-            var shoeBySize = store.GetShoeBySize(42.5);
+            Shoe shoeBySize = store.GetShoeBySize(42.5);
             Console.WriteLine(shoeBySize);
             //Size 42.5, textile Nike running shoe.
 
