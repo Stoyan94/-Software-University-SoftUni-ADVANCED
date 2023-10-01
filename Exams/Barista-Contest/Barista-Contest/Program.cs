@@ -43,4 +43,28 @@ while (coffeInput.Any() && milkInput.Any())
 }
 
 
+if (coffeInput.Any() || milkInput.Any())
+{
+    Console.WriteLine("Nina needs to exercise more! She didn't use all the coffee and milk!");
+
+    string isCofeeLeft = coffeInput.Count() > 0
+        ? string.Join(", ", coffeInput) : "none";
+
+    Console.WriteLine($"Coffee left: {isCofeeLeft}");
+
+    string isMilkLeft = milkInput.Count() > 0
+        ? string.Join(", ", milkInput) : "none";
+    Console.WriteLine($"Milk left: {isMilkLeft}");
+}
+else
+{
+    Console.WriteLine("Nina is going to win! She used all the coffee and milk!");
+    Console.WriteLine("Coffee left: none");
+    Console.WriteLine("Milk left: none");
+}
+
+foreach (var drink in createdCofee.OrderBy(x => x.Value).ThenByDescending(x => x.Key))
+{
+    Console.WriteLine($"{drink.Key}: {drink.Value}");
+}
 
