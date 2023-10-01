@@ -33,6 +33,8 @@ while((directios = Console.ReadLine())!="End")
         continue;
     }
 
+    field[moulRow, moulCol] = '-';
+
     moulRow += nextRow;
     moulCol += nextCol;
 
@@ -41,6 +43,7 @@ while((directios = Console.ReadLine())!="End")
         moulPoints -= 3;
 
         int index = teleports.FindIndex(x => x == moulRow);
+        field[moulRow, moulCol] = '-';
 
         if (index > 1)
         {
@@ -52,14 +55,17 @@ while((directios = Console.ReadLine())!="End")
             moulRow = teleports[2];
             moulCol = teleports[3];
         }
+
+        field[moulRow, moulCol] = 'M';
     }
     else if (char.IsDigit(field[moulRow,moulCol]))
     {
         int currPoints = field[moulRow, moulCol] - 48;
-        moulPoints += currPoints;
-
-        field[moulRow, moulCol] = '_';
+        moulPoints += currPoints;        
     }
+
+    field[moulRow, moulCol] = 'M';
+
 
     if (moulPoints >= 25)
     {
@@ -68,10 +74,37 @@ while((directios = Console.ReadLine())!="End")
     }
 }
 
+if (isWin)
+{
+    Console.WriteLine("Yay! The Mole survived another game!");
+    Console.WriteLine($"The Mole managed to survive with a total of {moulPoints} points.");
+    PrintMatrix(field);
+}
+else
+{
+    Console.WriteLine("Too bad! The Mole lost this battle!");
+    Console.WriteLine($"The Mole lost the game with a total of {moulPoints} points.");
+    PrintMatrix(field);
+}
+
+
+
+void PrintMatrix(char[,] field)
+{
+    for (int row = 0; row < field.GetLength(0); row++)
+    {
+        for (int col = 0; col < field.GetLength(0); col++)
+        {
+            Console.Write(field[row,col]);
+        }
+        Console.WriteLine();
+    }
+}
+
 bool isInrenage(char[,] field, int moulRow, int moulCol)
 {
-    return moulRow>0 && moulRow<field.GetLength(0) &&
-           moulCol>0 && moulCol<field.GetLength(1);
+    return moulRow>=0 && moulRow<field.GetLength(0) &&
+           moulCol>=0 && moulCol<field.GetLength(1);
 }
 
 char[,] CreatField(int fieldSize,ref int moulRow, ref int moulColl, List<int> teleports)
