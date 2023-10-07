@@ -30,7 +30,7 @@ namespace Renovators
 
             ouput.AppendLine($"-Renovator: {Name})");
             ouput.AppendLine($"--Specialty: {Type}");
-            ouput.AppendLine($"-Renovator: {Name})");
+            ouput.AppendLine($"--Rate per day: {Rate:f2} BGN");
 
             return ouput.ToString().Trim();
         }

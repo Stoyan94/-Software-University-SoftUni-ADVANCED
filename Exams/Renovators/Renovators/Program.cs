@@ -1,6 +1,7 @@
 ﻿// Initialize the repository (Catalog)
 using Renovators;
 using System;
+using System.Collections.Generic;
 
 Catalog catalog = new Catalog("Quality renovators", 5, "Kitchen");
 

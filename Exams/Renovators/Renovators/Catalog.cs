@@ -72,5 +72,23 @@ namespace Renovators
 
             return countRemoves;
         }
+
+        public Renovator HireRenovator(string hireByName)
+        {
+            var hire = Renovators.FirstOrDefault(x=>x.Name == hireByName);
+
+            if (hire is null)
+            {
+                return null;
+            }
+            return hire;
+        }
+
+        public  List<Renovator> PayRenovators(int countDaysWork) 
+        {
+            var renovatorChek = renovators.FindAll(x=>x.Days == countDaysWork);
+
+            return renovatorChek;
+        }
     }
 }
