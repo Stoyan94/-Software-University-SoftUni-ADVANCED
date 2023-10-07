@@ -60,5 +60,17 @@ namespace Renovators
             }
             return false;
         }
+
+        public int RemoveRenovatorBySpecialty(string removeBySpecialty)
+        {
+            int countRemoves = this.renovators.RemoveAll(x => x.Type == removeBySpecialty);
+
+            if (countRemoves == 0)
+            {
+                return 0;
+            }
+
+            return countRemoves;
+        }
     }
 }

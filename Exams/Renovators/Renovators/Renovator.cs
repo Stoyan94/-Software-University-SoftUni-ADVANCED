@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Renovators
 {
@@ -23,5 +24,15 @@ namespace Renovators
         public bool Hired { get; set; } = false;
                       
 
+        public override string ToString()
+        {
+            StringBuilder ouput = new StringBuilder();
+
+            ouput.AppendLine($"-Renovator: {Name})");
+            ouput.AppendLine($"--Specialty: {Type}");
+            ouput.AppendLine($"-Renovator: {Name})");
+
+            return ouput.ToString().Trim();
+        }
     }
 }
