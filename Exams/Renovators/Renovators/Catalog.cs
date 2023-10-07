@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Renovators
 {
@@ -21,11 +22,11 @@ namespace Renovators
             renovators = new List<Renovator>();
         }
 
-        public IReadOnlyCollection<Renovator> Renovators => renovators;
+        public IReadOnlyCollection<Renovator> Renovators => this.renovators;
 
-        public string Name { get; set; }
-        public int NeededRenovators { get; set; }
-        public string Project { get; set; }
+        public string Name { get; private set; }
+        public int NeededRenovators { get; private set; }
+        public string Project { get; private set; }
 
         public int Count => renovators.Count;
 
@@ -45,6 +46,7 @@ namespace Renovators
                 return InvalidRate;
             }
 
+            NeededRenovators--;
             renovators.Add(renovator);
 
             return $"Successfully added {renovator.Name} to the catalog.";
@@ -81,14 +83,31 @@ namespace Renovators
             {
                 return null;
             }
+            hire.Hired = true;
             return hire;
         }
 
         public  List<Renovator> PayRenovators(int countDaysWork) 
         {
-            var renovatorChek = renovators.FindAll(x=>x.Days == countDaysWork);
+            var renovatorChek = renovators.FindAll(x=>x.Days > countDaysWork);
 
             return renovatorChek;
+        }
+
+        public string Report()
+        {
+            StringBuilder output = new StringBuilder();
+
+            output.AppendLine($"Renovators available for Project {this.Project}:");
+
+            foreach (var renovator in Renovators.Where(x=>x.Hired == false))
+            {
+                output.AppendLine($"{renovator}");
+            }
+
+           
+
+            return output.ToString().Trim();
         }
     }
 }

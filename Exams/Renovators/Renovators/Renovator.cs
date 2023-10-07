@@ -28,7 +28,7 @@ namespace Renovators
         {
             StringBuilder ouput = new StringBuilder();
 
-            ouput.AppendLine($"-Renovator: {Name})");
+            ouput.AppendLine($"-Renovator: {Name}");
             ouput.AppendLine($"--Specialty: {Type}");
             ouput.AppendLine($"--Rate per day: {Rate:f2} BGN");
 
