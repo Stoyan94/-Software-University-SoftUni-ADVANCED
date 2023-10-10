@@ -1,7 +1,7 @@
-﻿using CustomStructures;
+﻿using CustomQueue;
 using System;
 
-CustomQueue queue = new();
+CustomStructureQueue queue = new();
 
 queue.Enqueue(1);
 queue.Enqueue(22);
