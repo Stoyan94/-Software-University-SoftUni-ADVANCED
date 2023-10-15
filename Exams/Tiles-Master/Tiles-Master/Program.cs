@@ -12,26 +12,39 @@ namespace Tiles_Master
 
             Queue<int> greyTiles = new Queue<int>(Console.ReadLine().Split().Select(int.Parse));
 
-            Dictionary<string, int> table = new Dictionary<string,int>()
+            Dictionary<string, int> table = new Dictionary<string, int>()
             {
-                ["Sink"] = 40,                
-                ["Oven"] = 50,                
+                ["Sink"] = 40,
+                ["Oven"] = 50,
                 ["Countertop"] = 60,
                 ["Wall"] = 70,
                 ["Floor"] = 0,
             };
 
-            Dictionary<string, int> typeAreaRenovation = new Dictionary<string, int>();
-
-            while (whiteTiles.Any() || greyTiles.Any())
+            SortedDictionary<string, int> typeAreaRenovation = new SortedDictionary<string, int>()
             {
+                ["Floor"] = 0
+            };
+
+            while (whiteTiles.Any() && greyTiles.Any())
+            {
+                if (whiteTiles.Peek() != greyTiles.Peek())
+                {
+                    int greyAreaBack = greyTiles.Dequeue();
+                    int devideAreas = whiteTiles.Pop() % greyAreaBack;
+
+                    whiteTiles.Push(devideAreas / 2);
+                    greyTiles.Enqueue(greyAreaBack);
+                    continue;
+                }
+
                 int result = whiteTiles.Peek() + greyTiles.Peek();
 
                 if (table.ContainsValue(result))
                 {
-                    string nameArea = table.FirstOrDefault(x=>x.Value == result).Key;
+                    string nameArea = table.FirstOrDefault(x => x.Value == result).Key;
 
-                    if (!typeAreaRenovation.ContainsKey(nameArea)) 
+                    if (!typeAreaRenovation.ContainsKey(nameArea))
                     {
                         typeAreaRenovation[nameArea] = 0;
                     }
@@ -42,18 +55,17 @@ namespace Tiles_Master
                 }
                 else
                 {
-                   
-                    if (!typeAreaRenovation.ContainsKey())
-                    {
-                        typeAreaRenovation[] = 0;
-                    }
                     typeAreaRenovation["Floor"] += 1;
                     whiteTiles.Pop();
                     greyTiles.Dequeue();
+
                 }
             }
 
-            Console.WriteLine();
+            foreach (var item in typeAreaRenovation.OrderByDescending(v=>v.Value))
+            {
+                Console.WriteLine($"{item.Key}: {item.Value}");
+            }
         }
     }
 }
