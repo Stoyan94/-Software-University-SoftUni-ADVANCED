@@ -18,6 +18,7 @@ namespace Tiles_Master
                 ["Oven"] = 50,                
                 ["Countertop"] = 60,
                 ["Wall"] = 70,
+                ["Floor"] = 0,
             };
 
             Dictionary<string, int> typeAreaRenovation = new Dictionary<string, int>();
@@ -32,10 +33,27 @@ namespace Tiles_Master
 
                     if (!typeAreaRenovation.ContainsKey(nameArea)) 
                     {
-
+                        typeAreaRenovation[nameArea] = 0;
                     }
+                    typeAreaRenovation[nameArea] += 1;
+
+                    whiteTiles.Pop();
+                    greyTiles.Dequeue();
+                }
+                else
+                {
+                   
+                    if (!typeAreaRenovation.ContainsKey())
+                    {
+                        typeAreaRenovation[] = 0;
+                    }
+                    typeAreaRenovation["Floor"] += 1;
+                    whiteTiles.Pop();
+                    greyTiles.Dequeue();
                 }
             }
+
+            Console.WriteLine();
         }
     }
 }
