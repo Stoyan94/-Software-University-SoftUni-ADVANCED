@@ -62,6 +62,15 @@ namespace Tiles_Master
                 }
             }
 
+            string isWihteTilesUsed = whiteTiles.Count() > 0 
+                ? string.Join(", ", whiteTiles) : "none";
+
+            string isGteyTilesUsed = greyTiles.Count() > 0 
+                ? string.Join (", ", greyTiles) : "none";
+
+            Console.WriteLine($"White tiles left: {isWihteTilesUsed}");
+            Console.WriteLine($"Grey tiles left: {isGteyTilesUsed}");
+
             foreach (var item in typeAreaRenovation.OrderByDescending(v=>v.Value))
             {
                 Console.WriteLine($"{item.Key}: {item.Value}");
