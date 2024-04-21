@@ -7,13 +7,51 @@ int planeCol = 0;
 int planeArmor = 300;
 int enemiesCount = 0;
 
-string[,] airspace = CreatField(size, planeRow, planeCol, enemiesCount);
+string[,] airspace = CreatField(size, ref planeRow, ref planeCol, ref enemiesCount);
 
-Console.WriteLine();
+string command;
+
+while (enemiesCount > 0)
+{
+    command = Console.ReadLine();
+
+    switch (command)
+    {
+        case "up": planeRow--; break;
+        case "down": planeRow++; break;
+        case "left": planeCol--; break;
+        case "right": planeCol++; break;
+    }
+
+    string currPosition = airspace[planeRow, planeCol];
+    airspace[planeRow, planeCol] = "-";
+
+    if (currPosition == "E")
+    {
+        enemiesCount--;
+        planeArmor -= 100;
+
+        if (planeArmor == 0)
+        {
+            Console.WriteLine($"Mission failed, your jetfighter was shot down! Last coordinates [{planeRow}, {planeCol}]!");
+            PrintMatrix(planeRow, planeCol, airspace);
+            return;
+        }
+    }
+    if (currPosition == "R")
+    {
+        planeArmor = 300;
+    }
+}
+
+Console.WriteLine($"Mission accomplished, you neutralized the aerial threat!");
+PrintMatrix(planeRow, planeCol, airspace);
+        
 
 
 
-string[,] CreatField(int size, int planeRow, int planeCol, int enemiesCount)
+
+string[,] CreatField(int size, ref int planeRow, ref int planeCol, ref int enemiesCount)
 {
     string[,] matrix = new string[size, size];
 
@@ -43,4 +81,19 @@ string[,] CreatField(int size, int planeRow, int planeCol, int enemiesCount)
 
     return matrix;    
 }
+
+ static void PrintMatrix(int planeRow, int planeCol, string[,] matrix)
+{
+    matrix[planeRow, planeCol] = "J";
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write(matrix[i, j]);
+        }
+        Console.WriteLine();
+    }
+}
+
 
