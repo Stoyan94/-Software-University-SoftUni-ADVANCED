@@ -43,8 +43,12 @@ else
     {
         Console.WriteLine("Henry remained hungry. He will try next weekend again.");
     }
-    else
+    else if (eatFood == 1)
     {
         Console.WriteLine($"Henry ate: {eatFood} food.");
+    }
+    else
+    {
+        Console.WriteLine($"Henry ate: {eatFood} foods.");
     }
 }
