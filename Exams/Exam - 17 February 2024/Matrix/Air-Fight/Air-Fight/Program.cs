@@ -95,5 +95,3 @@ string[,] CreatField(int size, ref int planeRow, ref int planeCol, ref int enemi
         Console.WriteLine();
     }
 }
-
-
